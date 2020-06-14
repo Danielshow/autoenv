@@ -10,18 +10,18 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:autoenv.helloWorld"
+        "onCommand:autoenv.activateAutoEnv"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [{
-            "command": "autoenv.helloWorld",
-            "title": "Add to ENV"
+            "command": "autoenv.activateAutoEnv",
+            "title": "Add line to ENV"
 		}],
 		"menus": {
 			"editor/context": [{
 				"when": "resourceLangId == javascript",
-				"command": "autoenv.helloWorld",
+				"command": "autoenv.activateAutoEnv",
 				"group": "YourGroup@1"
 		  }]
 		}

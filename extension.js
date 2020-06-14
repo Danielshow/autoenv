@@ -1,6 +1,8 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
+const autoEnv = require('./src/index');
+
 const editor = vscode.window.activeTextEditor;
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -11,10 +13,11 @@ const editor = vscode.window.activeTextEditor;
 function activate(context) {
 	console.log('Congratulations, your extension "autoenv" is now active!');
 
-	let disposable = vscode.commands.registerCommand('autoenv.helloWorld', function () {
+	let disposable = vscode.commands.registerCommand('autoenv.activateAutoEnv', function () {
 		// The code you place here will be executed every time your command is executed
 		const line = editor.selection.active.line;
-        const text = editor.document.lineAt(line).text;
+		const text = editor.document.lineAt(line).text;
+		autoEnv(text);
 		// Display a message box to the user
 		vscode.window.showInformationMessage(text.trim());
 	});
