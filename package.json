@@ -16,9 +16,15 @@
 	"contributes": {
 		"commands": [{
             "command": "autoenv.helloWorld",
-            "title": "Hello World"
-
-		}]
+            "title": "Add to ENV"
+		}],
+		"menus": {
+			"editor/context": [{
+				"when": "resourceLangId == javascript",
+				"command": "autoenv.helloWorld",
+				"group": "YourGroup@1"
+		  }]
+		}
 	},
 	"scripts": {
 		"lint": "eslint .",
