@@ -9,14 +9,14 @@ const projectWorkspace = vscode.workspace.workspaceFolders[0].uri
 const checkIfEnvExist = (key) => {
   let filesInEnv = fs.readFileSync(`${projectWorkspace}/.env`, "utf8");
   filesInEnv = filesInEnv.split("\n").filter(Boolean);
-  let found = false;
-  filesInEnv.forEach((line) => {
+  for (let i = 0; i < filesInEnv.length; i++){
+    let line = filesInEnv[i];
     if (line.split("=")[0].trim() == key) {
-      found = true;
       vscode.window.showErrorMessage("ENV already exists in .env file");
+      return true;
     }
-  });
-  return found;
+  }
+  return false;
 };
 
 const replaceLineBreak = (contents) => {
