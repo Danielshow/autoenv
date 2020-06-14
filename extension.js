@@ -15,9 +15,11 @@ function activate(context) {
 
 	let disposable = vscode.commands.registerCommand('autoenv.activateAutoEnv', function () {
 		// The code you place here will be executed every time your command is executed
+		const fileName = editor.document.fileName;
+		const fileContents = editor.document.getText().toString().split("\n");
 		const line = editor.selection.active.line;
 		const text = editor.document.lineAt(line).text;
-		autoEnv(text);
+		autoEnv(text, fileContents, fileName, line);
 		// Display a message box to the user
 		vscode.window.showInformationMessage(text.trim());
 	});
