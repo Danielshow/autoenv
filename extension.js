@@ -20,8 +20,6 @@ function activate(context) {
 		const line = editor.selection.active.line;
 		const text = editor.document.lineAt(line).text;
 		autoEnv(text, fileContents, fileName, line);
-		// Display a message box to the user
-		vscode.window.showInformationMessage(text.trim());
 	});
 
 	context.subscriptions.push(disposable);

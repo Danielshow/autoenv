@@ -9,7 +9,7 @@ const projectWorkspace = vscode.workspace.workspaceFolders[0].uri
 const checkIfEnvExist = (key) => {
   let filesInEnv = fs.readFileSync(`${projectWorkspace}/.env`, "utf8");
   filesInEnv = filesInEnv.split("\n").filter(Boolean);
-  for (let i = 0; i < filesInEnv.length; i++){
+  for (let i = 0; i < filesInEnv.length; i++) {
     let line = filesInEnv[i];
     if (line.split("=")[0].trim() == key) {
       vscode.window.showErrorMessage("ENV already exists in .env file");
@@ -31,6 +31,15 @@ const addLineBreak = (contents) => {
   });
 };
 
+const replaceEditorText = (fileContents, line, fileName, key) => {
+  fileContents = replaceLineBreak(fileContents);
+  let line_text = fileContents[line];
+  line_text = `${line_text.split("=")[0]} = process.env.${key};`;
+  fileContents[line] = line_text;
+  fileContents = addLineBreak(fileContents);
+  fs.writeFileSync(path.join(fileName), fileContents.join("\n"));
+};
+
 module.exports = (text, fileContents, fileName, line) => {
   fs.readdir(projectWorkspace, (err, files) => {
     if (err) {
@@ -49,6 +58,7 @@ module.exports = (text, fileContents, fileName, line) => {
       const data = `${key}=${value}\r\n`;
       if (files.find((file) => file == ".env")) {
         if (checkIfEnvExist(key)) {
+          replaceEditorText(fileContents, line, fileName, key);
           return;
         }
         try {
@@ -63,16 +73,7 @@ module.exports = (text, fileContents, fileName, line) => {
         fs.appendFileSync(`${projectWorkspace}/sample-env`, `${key}=\r\n`);
       }
 
-      // add file
-      fileContents = replaceLineBreak(fileContents);
-      // get line
-      let line_text = fileContents[line];
-      line_text.replace()
-      line_text = `${line_text.split("=")[0]} = process.env.${key};`;
-      fileContents[line] = line_text;
-      // remap
-      fileContents = addLineBreak(fileContents);
-      fs.writeFileSync(path.join(fileName), fileContents.join("\n"));
+      replaceEditorText(fileContents, line, fileName, key);
       vscode.window.showInformationMessage("Env added to .env file");
     }
   });
