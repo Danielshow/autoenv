@@ -16,7 +16,7 @@
 	"contributes": {
 		"commands": [{
             "command": "autoenv.activateAutoEnv",
-            "title": "Add line to ENV"
+            "title": "Add Line to ENV"
 		}],
 		"menus": {
 			"editor/context": [{
