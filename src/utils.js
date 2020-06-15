@@ -19,24 +19,20 @@ const checkIfEnvExist = (key) => {
     return false;
   };
   
-  const replaceLineBreak = (contents) => {
-    return contents.map((content) => {
-      return content.split(" ").join("r--autoenv");
-    });
+  const replaceLineBreak = (content) => {
+    return content.split(" ").join("r--autoenv");
   };
   
   const addLineBreak = (contents) => {
-    return contents.map((content) => {
-      return content.split("r--autoenv").join(" ");
-    });
+    return contents.split("r--autoenv").join(" ");
   };
   
   const replaceEditorText = (fileContents, line, fileName, key) => {
-    fileContents = replaceLineBreak(fileContents);
     let line_text = fileContents[line];
+    line_text = replaceLineBreak(line_text);
     line_text = `${line_text.split("=")[0]} = process.env.${key};`;
+    line_text = addLineBreak(line_text);
     fileContents[line] = line_text;
-    fileContents = addLineBreak(fileContents);
     fs.writeFileSync(path.join(fileName), fileContents.join("\n"));
   };
   
