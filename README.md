@@ -38,3 +38,4 @@ The env and sample-env file will also be populated
 Initial release of autoenv
 
 **Enjoy!**
+https://marketplace.visualstudio.com/items?itemName=danielshow.autoenv&ssr=false
