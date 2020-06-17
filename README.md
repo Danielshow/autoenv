@@ -2,7 +2,8 @@
 
 This extension allows you to add a variable to `env` file and `sample-env` file automatically by right clicking on the line and click on `Add Line to env`.
 
-![](https://user-images.githubusercontent.com/24846513/84639947-f68c5f00-aef0-11ea-918c-d00da00f6498.gif)
+
+![danielgifs](https://user-images.githubusercontent.com/24846513/84892812-2aed5000-b096-11ea-867d-254b8545a92d.gif)
 
 ## Features
 
