@@ -24,6 +24,13 @@ const KEY = process.env.KEY
 
 The env and sample-env file will also be populated
 
+## Extensions settings
+This extension requires that `autoenv.filename` key be added to your VSCODE settings.json file and value should be the `sample-env` filename, if not privided it will default to `sample-env`. See example below
+
+```json
+"autoenv-filename": "sample-env"
+```
+
 ## Requirements
 
 - None
@@ -37,6 +44,15 @@ The env and sample-env file will also be populated
 ### 1.0.0
 
 Initial release of autoenv
+
+## [1.0.1]
+
+- Add a new Gif
+- ALlow extension be compatible with previous versions of vscode
+
+## [1.0.2]
+- Fix env appending to existing env
+- Choose sample-env filename from vscode settings
 
 **Enjoy!**
 https://marketplace.visualstudio.com/items?itemName=danielshow.autoenv&ssr=false

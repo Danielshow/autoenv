@@ -2,6 +2,9 @@ const vscode = require("vscode");
 const fs = require("fs");
 const { checkIfEnvExist, replaceEditorText} = require('./utils');
 
+const workbenchConfig = vscode.workspace.getConfiguration('autoenv')
+const sampleEnvFilename = workbenchConfig.get('filename');
+
 const projectWorkspace = vscode.workspace.workspaceFolders[0].uri
   .toString()
   .split(":")[1];
@@ -17,6 +20,7 @@ module.exports = (text, fileContents, fileName, line) => {
       const matchedText = text.split("=");
       const key = matchedText[0].trim().split(" ")[1];
       const value = matchedText[1].trim();
+      const nameOfFile = sampleEnvFilename ? sampleEnvFilename : 'sample-env';
       if (!key || !value) {
         vscode.window.showErrorMessage("Cannot add line to env");
         return;
@@ -28,15 +32,15 @@ module.exports = (text, fileContents, fileName, line) => {
           return;
         }
         try {
-          fs.appendFileSync(`${projectWorkspace}/.env`, data);
-          fs.appendFileSync(`${projectWorkspace}/sample-env`, `${key}=\r\n`);
+          fs.appendFileSync(`${projectWorkspace}/.env`, `\n${data}`);
+          fs.appendFileSync(`${projectWorkspace}/${nameOfFile}`, `\n${key}=\r\n`);
         } catch (e) {
           console.log("Cannot write .env file: ", e);
           vscode.window.showErrorMessage("Cannot write .env file");
         }
       } else {
         fs.appendFileSync(`${projectWorkspace}/.env`, data);
-        fs.appendFileSync(`${projectWorkspace}/sample-env`, `${key}=\r\n`);
+        fs.appendFileSync(`${projectWorkspace}/${nameOfFile}`, `${key}=\r\n`);
       }
 
       replaceEditorText(fileContents, line, fileName, key);
