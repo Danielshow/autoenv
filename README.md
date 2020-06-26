@@ -1,4 +1,4 @@
-# Autoenv README
+# Autoenv
 
 This extension allows you to add a variable to `env` file and `sample-env` file automatically by right clicking on the line and click on `Add Line to env`.
 
