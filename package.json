@@ -2,7 +2,7 @@
 	"name": "autoenv",
 	"displayName": "autoenv",
 	"description": "Automatically add keys to .env file",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"engines": {
 		"vscode": "^1.40.0"
 	},
