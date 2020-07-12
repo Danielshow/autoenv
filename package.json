@@ -9,6 +9,15 @@
 	"bugs": {
 		"url": "https://github.com/Danielshow/autoenv.git/issues"
 	},
+	"keywords": [
+		".env",
+		"autoenv",
+		"javascript",
+		"dotenv",
+		"sample-env",
+		".env.example"
+	],
+	"author": "Daniel Shotonwa <danielshotonwa53@gmail.com> (https://github.com/danielshow)",
 	"publisher": "danielshow",
 	"categories": [
 		"Other"
