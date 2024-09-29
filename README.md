@@ -1,7 +1,7 @@
 # Autoenv
 
 This extension allows you to add a variable to `env` file and `sample-env` file automatically by right clicking on the line and click on `Add Line to env`.
-
+Note: If only works for Javascript file at the moment. 
 
 ![danielgifs](https://user-images.githubusercontent.com/24846513/84892812-2aed5000-b096-11ea-867d-254b8545a92d.gif)
 
